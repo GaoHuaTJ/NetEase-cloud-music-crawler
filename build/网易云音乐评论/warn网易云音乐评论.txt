@@ -1,0 +1,19 @@
+missing module named resource - imported by posix, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named posix - imported by os, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named _posixsubprocess - imported by subprocess, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named 'org.python' - imported by pickle, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py, xml.sax
+missing module named readline - imported by cmd, code, pdb, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+excluded module named _frozen_importlib - imported by importlib, importlib.abc, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named _winreg - imported by platform, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named java - imported by platform, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named 'java.lang' - imported by platform, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py, xml.sax._exceptions
+missing module named vms_lib - imported by platform, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named termios - imported by tty, getpass, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named grp - imported by shutil, tarfile, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named pwd - imported by posixpath, shutil, tarfile, http.server, webbrowser, netrc, getpass, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named _dummy_threading - imported by dummy_threading, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named org - imported by copy, C:\Users\我是佟丽娅\AppData\Local\Programs\Python\Python36\Lib\site-packages\PyInstaller\网易云音乐爬虫\网易云音乐评论.py
+missing module named cffi - imported by Crypto.Util._raw_api
+missing module named StringIO - imported by Crypto.Util.py3compat
+missing module named _scproxy - imported by urllib.request
