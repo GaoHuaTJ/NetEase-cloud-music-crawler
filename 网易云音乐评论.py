@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 import urllib.request
 import http.cookiejar
 import urllib.parse
@@ -9,6 +7,7 @@ import codecs
 from Crypto.Cipher import AES
 import base64
 import os
+import pandas as pd
 
 
 class music:
@@ -93,14 +92,18 @@ class music:
 
 
 
-    def get_hotcomments(self, url):
+    def get_hotcomments(self, url,song_id):
         #获取热门评论
         params = self.get_params(1)
         encSecKey = self.get_encSecKey()
         content = self.get_json(url, params, encSecKey)
         json_dict = json.loads(content)
         hot_comment = json_dict['hotComments']
-        f = open('HotComments.txt', 'w', encoding='utf-8')
+        if not os.path.exists(song_id):
+            os.makedirs(song_id)
+        df_hot=pd.DataFrame(columns=["用户","点赞数","发表时间","热门评论"])
+        f = open('%s/HotComments.txt'%song_id, 'w', encoding='utf-8')
+        index=0
         for i in hot_comment:
             #将评论输出至txt文件中
             time_local = time.localtime(int(i['time'] / 1000))  # 将毫秒级时间转换为日期
@@ -110,18 +113,24 @@ class music:
             f.write('发表时间: ' + dt + '\n')
             f.write('评论: ' + i['content'] + '\n')
             f.write('-' * 40 + '\n')
+            df_hot.loc[index]=[i['user']['nickname'],str(i['likedCount']),dt,i['content']]
+            index+=1
         f.close()
+        df_hot.to_csv("%s/HotComments.csv"%song_id,encoding='utf_8_sig',index=False)
+        print("yishuchu")
 
 
 
-    def get_allcomments(self, url):
+    def get_allcomments(self, url,song_id):
         #获取全部评论
         params = self.get_params(1)
         encSecKey = self.get_encSecKey()
         content = self.get_json(url, params, encSecKey)
         json_dict = json.loads(content)
         comments_num = int(json_dict['total'])
-        f = open('AllComments.txt', 'w', encoding='utf-8')
+        if not os.path.exists(song_id):
+            os.makedirs(song_id)
+        f = open('%s/AllComments.txt'%song_id, 'w', encoding='utf-8')
         present_page = 0
         if (comments_num % 20 == 0):
             page = comments_num / 20
@@ -129,13 +138,17 @@ class music:
             page = int(comments_num / 20) + 1
         print("共有%d页评论" % page)
         print("共有%d条评论" % comments_num)
+        df_all=pd.DataFrame(columns=["用户","点赞数","发表时间","评论"])
         # 逐页抓取
+        flag=0
         for i in range(page):
             params = self.get_params(i + 1)
             encSecKey = self.get_encSecKey()
             json_text = self.get_json(url, params, encSecKey)
             json_dict = json.loads(json_text)
             present_page = present_page + 1
+            if flag==0:
+                index=0
             for i in json_dict['comments']:
                 # 将评论输出至txt文件中
                 time_local = time.localtime(int(i['time'] / 1000))# 将毫秒级时间转换为日期
@@ -145,19 +158,21 @@ class music:
                 f.write('发表时间: ' + dt + '\n')
                 f.write('评论: ' + i['content'] + '\n')
                 f.write('-' * 40 + '\n')
+                df_all.loc[index]=[i['user']['nickname'],str(i['likedCount']),dt,i['content']]
+                index+=1
             print("第%d/%d页爬取完毕" %(present_page,page))
-
+            flag+=1
         f.close()
-
-
-
-
-
-
+        df_all.to_csv("%s/AllComments.csv"%song_id,encoding='utf_8_sig',index=False)
+    def get_music(self,song_id):
+        print("开始下载MP3")
+        urllib.request.urlretrieve("http://music.163.com/song/media/outer/url?id=%s.mp3"%song_id,'%s/%s.mp3'%(song_id,song_id))
+        print("MP3下载完毕")
 
 
 mail = music()
 song_id=input("song?id=")
 url="https://music.163.com/weapi/v1/resource/comments/R_SO_4_{}?csrf_token=".format(song_id)
-mail.get_hotcomments(url)
-mail.get_allcomments(url)
+# mail.get_music(song_id)
+mail.get_hotcomments(url,song_id)
+mail.get_allcomments(url,song_id)
